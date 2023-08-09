@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: preview-environments
+  namespace: argocd
+spec:
+  generators:
+  - pullRequest:
+      github:
+        owner: rafaeljusto
+        repo: autoenv
+        labels:
+        - preview
+      requeueAfterSeconds: 15
+  template:      
+    metadata:
+      name: 'simple-deployment-{{branch}}-{{number}}'
+    spec:
+      source:
+        repoURL: https://github.com/rafaeljusto/autoenv.git
+        targetRevision: '{{head_sha}}'
+        path: helm
+        helm:
+          parameters:
+          - name: "image.tag"
+            value: '{{head_sha}}'
+          - name: "namespace"
+            value: 'simple-deployment-{{branch}}-{{number}}'
+      project: default
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true  
+        automated:
+          prune: true
+          selfHeal: true
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'simple-deployment-{{branch}}-{{number}}'
