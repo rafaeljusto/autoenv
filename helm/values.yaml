@@ -1,0 +1,13 @@
+replicaCount: 1
+name: autoenv
+env: staging
+namespace: staging
+image:
+  name: webserver-simple
+  tag: 'vfa888b5'
+  pullPolicy: IfNotPresent
+service:
+  type: LoadBalancer
+  port: 8418
+  targetPort: 8080
+  portName: http
