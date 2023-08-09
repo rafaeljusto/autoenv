@@ -18,12 +18,12 @@ spec:
     spec:
       source:
         repoURL: https://github.com/rafaeljusto/autoenv.git
-        targetRevision: '{{head_sha}}'
+        targetRevision: 'v{{ head_sha | substr 0 6 }}'
         path: helm
         helm:
           parameters:
           - name: "image.tag"
-            value: '{{head_sha}}'
+            value: 'v{{ head_sha | substr 0 6 }}'
           - name: "namespace"
             value: 'simple-deployment-{{branch}}-{{number}}'
       project: default
