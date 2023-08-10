@@ -12,7 +12,9 @@ jobs:
 
       - name: Find tag
         id: find_tag
-        run: echo "tag=$(git describe --always)" >> $GITHUB_OUTPUT
+        run: |
+          echo "Tag: $(git describe --always)"
+          echo "tag=$(git describe --always)" >> $GITHUB_OUTPUT
 
       - uses: docker/setup-buildx-action@v2
 
