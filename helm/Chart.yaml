@@ -1,6 +1,6 @@
 apiVersion: v2
-name: simple-deployment
-description: The helm chart for the simple-deployment
+name: autoenv
+description: The helm chart for the autoenv
 type: application
 version: 0.1.0
 appVersion: "1.0.0"

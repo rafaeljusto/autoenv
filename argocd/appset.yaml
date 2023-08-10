@@ -17,18 +17,18 @@ spec:
       requeueAfterSeconds: 15
   template:      
     metadata:
-      name: 'simple-deployment-{{branch}}-{{number}}'
+      name: 'autoenv-{{branch}}-{{number}}'
     spec:
       source:
         repoURL: https://github.com/rafaeljusto/autoenv.git
-        targetRevision: 'v{{head_short_sha_7}}'
+        targetRevision: '{{head_sha}}'
         path: helm
         helm:
           parameters:
           - name: "image.tag"
             value: 'v{{head_short_sha_7}}'
           - name: "namespace"
-            value: 'simple-deployment-{{branch}}-{{number}}'
+            value: 'autoenv-{{branch}}-{{number}}'
       project: default
       syncPolicy:
         syncOptions:
@@ -38,4 +38,4 @@ spec:
           selfHeal: true
       destination:
         server: https://kubernetes.default.svc
-        namespace: 'simple-deployment-{{branch}}-{{number}}'
+        namespace: 'autoenv-{{branch}}-{{number}}'

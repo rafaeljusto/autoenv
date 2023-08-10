@@ -43,13 +43,13 @@ argocd admin initial-password -n argocd
 argocd login localhost:8080 --username admin --password <password>
 ```
 
-10. Generate a Github token for the repository (avoid rate limit issues). It
+10. Generate a GitHub token for the repository (avoid rate limit issues). It
     needs to have at least Pull Request permissions.
 ```
 kubectl create secret generic github-token --from-literal=token=<token> -n argocd
 ```
 
-10. Create basic application (default staging):
+10. Create a basic application (default staging):
 ```
 argocd app create base-app \
   --project default \
