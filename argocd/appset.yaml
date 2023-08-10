@@ -10,7 +10,10 @@ spec:
         owner: rafaeljusto
         repo: autoenv
         labels:
-        - preview
+          - preview
+        tokenRef:
+          secretName: github-token
+          key: token
       requeueAfterSeconds: 15
   template:      
     metadata:
@@ -18,12 +21,12 @@ spec:
     spec:
       source:
         repoURL: https://github.com/rafaeljusto/autoenv.git
-        targetRevision: 'v{{ head_sha | substr 0 6 }}'
+        targetRevision: 'v{{head_short_sha_7}}'
         path: helm
         helm:
           parameters:
           - name: "image.tag"
-            value: 'v{{ head_sha | substr 0 6 }}'
+            value: 'v{{head_short_sha_7}}'
           - name: "namespace"
             value: 'simple-deployment-{{branch}}-{{number}}'
       project: default
