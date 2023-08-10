@@ -4,7 +4,7 @@ env: staging
 namespace: staging
 image:
   name: webserver-simple
-  tag: 'v7b5cbe3'
+  tag: 'v4820b20'
   pullPolicy: IfNotPresent
 service:
   type: LoadBalancer
