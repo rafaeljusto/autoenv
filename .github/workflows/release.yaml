@@ -32,6 +32,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: rafaeljusto/autoenv:v${{ steps.find_tag.outputs.tag }}
 

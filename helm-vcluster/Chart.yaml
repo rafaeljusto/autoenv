@@ -1,0 +1,6 @@
+apiVersion: v2
+name: vcluster-generator
+description: The helm chart to generate a vlcuster
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
