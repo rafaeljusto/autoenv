@@ -3,9 +3,14 @@ apiVersion: cluster.x-k8s.io/v1beta1
 kind: Cluster
 metadata:
   name: {{.Values.cluster_name | required "The cluster name is required."}}
+  namespace: {{.Values.namespace | required "The cluster namespace is required."}}
   labels:
     name: {{.Values.cluster_name}}
 spec:
+  controlPlaneRef:
+    apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
+    kind: VCluster
+    name: {{.Values.cluster_name}}
   infrastructureRef:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
     kind: VCluster
