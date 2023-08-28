@@ -75,7 +75,7 @@ And finally, retrieve the `kubeconfig` information to access the virtual
 cluster:
 
 ```shell
-clusterctl get kubeconfig vcluster -n autoenvs
+clusterctl get kubeconfig example -n autoenvs
 ```
 
 After you're happy with your test, you can remove the example cluster with the
