@@ -22,20 +22,20 @@ spec:
       source:
         repoURL: https://github.com/rafaeljusto/autoenv.git
         targetRevision: '{{head_sha}}'
-        path: helm
+        path: helm-vcluster
         helm:
           parameters:
-          - name: "image.tag"
-            value: 'v{{head_short_sha_7}}'
-          - name: "namespace"
+          - name: "cluster_name"
             value: 'autoenv-{{branch}}-{{number}}'
       project: default
       syncPolicy:
-        syncOptions:
-          - CreateNamespace=true  
         automated:
           prune: true
           selfHeal: true
       destination:
-        server: https://kubernetes.default.svc
-        namespace: 'autoenv-{{branch}}-{{number}}'
+        name: in-cluster
+        namespace: autoenvs
+      ignoreDifferences:
+        - jsonPointers:
+            - /controlPlaneEndpoint
+          kind: VCluster
