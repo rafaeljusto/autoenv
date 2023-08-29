@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: EventSource
+metadata:
+  name: vcluster-add
+  namespace: argo
+spec:
+  template:
+    serviceAccountName: argocd-workflow
+  eventBusName: vcluster-add
+  resource:
+    vcluster-add:
+      namespace: autoenvs
+      group: cluster.x-k8s.io
+      version: v1beta1
+      resource: clusters
+      eventTypes:
+        - ADD
+      filter:
+        afterStart: true

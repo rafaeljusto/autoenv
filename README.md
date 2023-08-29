@@ -49,7 +49,9 @@ clusterctl init --infrastructure vcluster
 
 4. Create the required namespaces:
 ```shell
+kubectl create namespace argo
 kubectl create namespace argocd
+kubectl create namespace argo-events
 kubectl create namespace autoenvs
 ```
 
@@ -118,7 +120,44 @@ argocd login localhost:8080 --username admin --password <password>
 kubectl create secret generic github-token --from-literal=token=<token> -n argocd
 ```
 
-13. (optional) Create a basic application (default staging):
+13. Add ArgoCD secret into k8s secrets for internal scripts:
+```shell
+kubectl create secret generic argocd-login --from-literal=password=<password> --from-literal=username=admin -n argo
+```
+
+14. Install Argo workflows, also apply a patch to allow the use of ArgoCD login.
+```shell
+kubectl apply -n argo -f https://github.com/argoproj/argo-workflows/releases/download/v3.4.10/install.yaml
+kubectl patch deployment \
+  argo-server \
+  --namespace argo \
+  --type='json' \
+  -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/args", "value": [
+  "server",
+  "--auth-mode=server"
+]}]'
+```
+
+15. Install Argo events:
+```shell
+kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-events/stable/manifests/install.yaml
+```
+
+16. Port-forward ArgoCD Workflows to access the web UI:
+```shell
+kubectl -n argo port-forward deployment/argo-server 2746:2746
+```
+
+17. Log into the web UI: https://localhost:2746
+
+18. Install workflow components:
+```shell
+kubectl apply -n argocd -f argocd/cluster-workflows.yaml
+kubectl apply -n argocd -f argocd/rollouts.yaml
+kubectl apply -n argocd -f argocd/appset.yaml
+```
+
+19. (optional) Create a basic application (default staging):
 ```shell
 argocd app create base-app \
   --project default \
@@ -131,7 +170,8 @@ argocd app create base-app \
   --dest-namespace staging
 ```
 
-14. Create the application set responsible for detecting pull requests:
+20. (fallback for step 18) Create the application set responsible for detecting
+    pull requests:
 ```shell
 argocd app create appset \
   --project default \
@@ -144,7 +184,7 @@ argocd app create appset \
   --dest-namespace argocd
 ```
 
-15. Create your Pull Request with the `preview` tag.
+21. Create your Pull Request with the `preview` tag.
 
 ## References
 

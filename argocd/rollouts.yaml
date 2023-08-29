@@ -1,0 +1,30 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: argo-rollouts
+  namespace: argocd
+spec:
+  generators:
+  - clusters:
+      selector:
+        matchLabels:
+          provider: vcluster
+  template:
+    metadata:
+      name: 'argo-rollouts-{{name}}'
+    spec:
+      source:
+        repoURL: 'https://github.com/rafaeljusto/autoenv.git'
+        targetRevision: HEAD
+        path: argocd-rollouts
+      project: default
+      destination:
+        name: '{{name}}'
+        namespace: argo-rollouts
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+          selfHeal: true
