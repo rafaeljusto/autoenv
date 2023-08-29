@@ -69,7 +69,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: argocd-workflow
-  namespace: vcluster
+  namespace: autoenvs
 rules:
 - apiGroups: ["cluster.x-k8s.io"]
   resources: ["clusters"]
@@ -82,7 +82,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: argocd-workflow
-  namespace: vcluster
+  namespace: autoenvs
 subjects:
 - kind: ServiceAccount
   name: argocd-workflow
