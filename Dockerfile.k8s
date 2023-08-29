@@ -1,0 +1,9 @@
+FROM alpine/k8s:1.28.1
+
+RUN curl -L https://github.com/kubernetes-sigs/cluster-api/releases/download/v1.5.0/clusterctl-linux-arm64 -o clusterctl && \
+  install -o root -g root -m 0755 clusterctl /usr/local/bin/clusterctl && \
+  rm clusterctl
+
+RUN curl -L https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-arm64 -o argocd && \
+  install -o root -g root -m 0755 argocd /usr/local/bin/argocd && \
+  rm argocd
