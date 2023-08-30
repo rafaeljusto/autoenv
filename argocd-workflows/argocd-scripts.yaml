@@ -37,7 +37,7 @@ data:
     echo "Adding cluster $cluster to ArgoCD..."
     argocd cluster add $cluster --label provider=vcluster -y --upsert --insecure
 
-    echo "All done!"
+    echo "All done 🎉"
 
   remove-from-argocd.sh: |
     #!/bin/sh
