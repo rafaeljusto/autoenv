@@ -21,11 +21,11 @@ data:
     done
 
     # Not sure why in-cluster config isn't working for clusterctl so hacking the kubeconfig...
-    echo "Applying hack..."
-    kubectl config set-cluster in-cluster --server=https://kubernetes.default.svc.cluster.local --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt --embed-certs=true ;
-    kubectl config set-credentials clusterctl --token=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token) ;
-    kubectl config set-context in-cluster --cluster in-cluster --user clusterctl --namespace argocd ;
-    kubectl config use-context in-cluster ;
+    # echo "Applying hack..."
+    # kubectl config set-cluster in-cluster --server=https://kubernetes.default.svc.cluster.local --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt --embed-certs=true ;
+    # kubectl config set-credentials clusterctl --token=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token) ;
+    # kubectl config set-context in-cluster --cluster in-cluster --user clusterctl --namespace argocd ;
+    # kubectl config use-context in-cluster ;
 
     echo "Setting kubeconfig..."
     clusterctl get kubeconfig $cluster -n autoenvs > $HOME/.kube/my-vcluster.yaml
