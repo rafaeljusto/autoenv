@@ -20,12 +20,11 @@ data:
         cluster_ready=$(kubectl get cluster $cluster -o json -n autoenvs | jq -r '. | select(.status.phase=="Provisioned")')
     done
 
-    # Not sure why in-cluster config isn't working for clusterctl so hacking the kubeconfig...
-    # echo "Applying hack..."
-    # kubectl config set-cluster in-cluster --server=https://kubernetes.default.svc.cluster.local --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt --embed-certs=true ;
-    # kubectl config set-credentials clusterctl --token=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token) ;
-    # kubectl config set-context in-cluster --cluster in-cluster --user clusterctl --namespace argocd ;
-    # kubectl config use-context in-cluster ;
+    echo "Configuring cluster access..."
+    kubectl config set-cluster in-cluster --server=https://kubernetes.default.svc.cluster.local --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt --embed-certs=true
+    kubectl config set-credentials clusterctl --token=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+    kubectl config set-context in-cluster --cluster in-cluster --user clusterctl --namespace argocd
+    kubectl config use-context in-cluster
 
     echo "Setting kubeconfig..."
     clusterctl get kubeconfig $cluster -n autoenvs > $HOME/.kube/my-vcluster.yaml
@@ -35,7 +34,7 @@ data:
     #kubectl config set-context $cluster --cluster my-vcluster --user my-vcluster
     kubectl config use-context $cluster
 
-    echo "Adding cluster $cluster to ArgoCD..."
+    echo "Adding vcluster $cluster to ArgoCD..."
     argocd cluster add $cluster --label provider=vcluster -y --upsert --insecure
 
     echo "All done 🎉"
