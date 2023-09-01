@@ -163,19 +163,7 @@ kubectl -n argo port-forward deployment/argo-server 2746:2746
 ```shell
 kubectl apply -n argocd -f argocd/cluster-workflows.yaml
 kubectl apply -n argocd -f argocd/rollouts.yaml
-```
-
-18. Create the application set responsible for detecting pull requests:
-```shell
-argocd app create appset \
-  --project default \
-  --sync-policy automatic \
-  --auto-prune --self-heal \
-  --repo "https://github.com/rafaeljusto/autoenv" \
-  --revision HEAD \
-  --path argocd \
-  --dest-name in-cluster \
-  --dest-namespace argocd
+kubectl apply -n argocd -f argocd/appset.yaml
 ```
 
 19. Create your Pull Request with the `preview` tag.
