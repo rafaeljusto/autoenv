@@ -12,5 +12,8 @@ spec:
       name: {{.Values.chart_name}}
       repo: {{.Values.chart_repo}}
       version: {{.Values.chart_version}}
-    values: ""
+    values: |
+      serviceCIDR: "{{.Values.serviceCIDR}}"
+      service:
+        type: {{.Values.service.type }}
   kubernetesVersion: "{{.Values.kubernetes_version}}"
