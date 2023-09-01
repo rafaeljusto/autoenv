@@ -33,7 +33,7 @@ data:
 
     echo "Changing kubectl context..."
     #kubectl config set-context $cluster --cluster my-vcluster --user my-vcluster
-    kubectl config set-context $cluster
+    kubectl config use-context $cluster
 
     echo "Adding cluster $cluster to ArgoCD..."
     argocd cluster add $cluster --label provider=vcluster -y --upsert --insecure
