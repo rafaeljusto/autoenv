@@ -31,8 +31,7 @@ data:
     export KUBECONFIG="$HOME/.kube/config:$HOME/.kube/my-vcluster.yaml"
 
     echo "Changing kubectl context..."
-    #kubectl config set-context $cluster --cluster my-vcluster --user my-vcluster
-    kubectl config use-context $cluster
+    kubectl config set-context $cluster --cluster my-vcluster --user my-vcluster
 
     echo "Adding vcluster $cluster to ArgoCD..."
     argocd cluster add $cluster --label provider=vcluster -y --upsert --insecure
