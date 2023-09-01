@@ -5,5 +5,3 @@ chart_repo: "null"
 chart_version: "null"
 kubernetes_version: "v1.28.0"
 serviceCIDR: "10.0.0.0/8"
-service:
-  type: "LoadBalancer"
