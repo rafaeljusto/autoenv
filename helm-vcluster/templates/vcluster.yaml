@@ -14,11 +14,5 @@ spec:
       version: {{.Values.chart_version}}
     values: |
       serviceCIDR: "{{.Values.serviceCIDR}}"
-      ingress:
-        enabled: true
-        host: {{.Values.cluster_name}}.autoenvs.svc
-        annotations:
-          nginx.ingress.kubernetes.io/backend-protocol: HTTPS
-          nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-          nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      type: LoadBalancer
   kubernetesVersion: "{{.Values.kubernetes_version}}"
