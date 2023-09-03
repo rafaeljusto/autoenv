@@ -136,6 +136,7 @@ kubectl -n argo port-forward deployment/argo-server 2746:2746
 kubectl apply -n argocd -f argocd/cluster-workflows.yaml
 kubectl apply -n argocd -f argocd/rollouts.yaml
 kubectl apply -n argocd -f argocd/appset.yaml
+kubectl apply -n argocd -f argocd/app.yaml
 ```
 
 18. Create your Pull Request with the `preview` tag.
