@@ -60,4 +60,4 @@ data:
     kubectl config set-context $cluster --cluster my-vcluster --user my-vcluster
 
     echo "Removing vcluster $cluster from ArgoCD..."
-    argocd cluster rm $cluster || true
+    argocd cluster rm $cluster -y --insecure || true
