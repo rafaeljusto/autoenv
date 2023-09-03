@@ -138,7 +138,7 @@ kubectl apply -n argocd -f argocd/rollouts.yaml
 kubectl apply -n argocd -f argocd/appset.yaml
 ```
 
-19. Create your Pull Request with the `preview` tag.
+18. Create your Pull Request with the `preview` tag.
 
 ## References
 
