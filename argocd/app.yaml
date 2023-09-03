@@ -23,7 +23,7 @@ spec:
           - name: "image.tag"
             value: 'latest' # TODO: We need somhow to set the {{head_short_sha_7}} from the initial PR generator
           - name: "namespace"
-            value: 'default'
+            value: 'example'
       project: default
       destination:
         server: https://kubernetes.default.svc
