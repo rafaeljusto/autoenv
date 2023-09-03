@@ -16,35 +16,7 @@ should be allocated for the Docker engine to spin up the clusters:
 minikube start --memory=8g --cpus=4 --driver=docker
 ```
 
-This will change your `kubectl` context to this new cluster. Check the network
-`minikube` is running with the following commands:
-
-```shell
-minikube ip
-docker network inspect minikube
-```
-
-Enable `metallb` to easily access virtual clusters, configuring with the correct
-IP network:
-
-```shell
-minikube addons enable metallb
-cat > metallb-ip-config.yaml <<EOF
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  namespace: metallb-system
-  name: config
-data:
-  config: |
-    address-pools:
-    - name: default
-      protocol: layer2
-      addresses:
-      - 192.168.49.1-192.168.49.254
-EOF
-kubectl edit -f metallb-ip-config.yaml --namespace=metallb-system
-```
+This will change your `kubectl` context to this new cluster.
 
 Now we need to configure CAPI (Cluster API) that will be responsible for
 managing the virtual clusters.
