@@ -146,6 +146,6 @@ This repository uses the following contents as a reference:
 * https://cluster-api.sigs.k8s.io/user/quick-start
 * https://github.com/loft-sh/cluster-api-provider-vcluster
 * https://github.com/mtougeron/hundreds-of-clusters-demo
-* https://kubebyexample.com/learning-paths/metallb/install
 * https://www.vcluster.com/docs/operator/external-access#ingress
 * https://github.com/loft-sh/vcluster/blob/main/charts/k3s/templates/ingress.yaml
+* https://betterprogramming.pub/demystifying-gitops-ephemeral-pull-request-environments-5f1032f01299
