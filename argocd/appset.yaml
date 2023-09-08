@@ -27,6 +27,8 @@ spec:
           parameters:
           - name: "cluster_name"
             value: 'autoenv-{{branch}}-{{number}}'
+          - name: "imageTag"
+            value: "v{{head_short_sha_7}}"
       project: default
       syncPolicy:
         syncOptions:

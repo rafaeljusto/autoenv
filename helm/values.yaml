@@ -8,6 +8,6 @@ image:
   pullPolicy: IfNotPresent
 service:
   type: ClusterIP
-  port: 8418
+  port: 8080
   targetPort: 8080
   portName: http

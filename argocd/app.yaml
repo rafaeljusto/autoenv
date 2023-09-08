@@ -16,12 +16,10 @@ spec:
     spec:
       source:
         repoURL: https://github.com/rafaeljusto/autoenv.git
-        targetRevision: 'HEAD' # TODO: We need somhow to set the {{head_sha}} from the initial PR generator
+        targetRevision: 'HEAD'
         path: helm
         helm:
           parameters:
-          - name: "image.tag"
-            value: 'latest' # TODO: We need somhow to set the {{head_short_sha_7}} from the initial PR generator
           - name: "namespace"
             value: 'example'
       project: default

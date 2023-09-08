@@ -21,4 +21,11 @@ spec:
           nginx.ingress.kubernetes.io/backend-protocol: HTTPS
           nginx.ingress.kubernetes.io/ssl-passthrough: "true"
           nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      charts:
+        - name: autoenv
+          version: 0.1.0
+          repository: ""
+          values: |
+            image:
+              tag: {{.Values.imageTag}}
   kubernetesVersion: "{{.Values.kubernetes_version}}"
