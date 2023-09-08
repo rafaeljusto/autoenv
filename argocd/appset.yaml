@@ -21,7 +21,7 @@ spec:
     spec:
       source:
         repoURL: https://github.com/rafaeljusto/autoenv.git
-        targetRevision: '{{head_sha}}'
+        targetRevision: 'HEAD'
         path: helm-vcluster
         helm:
           parameters:
