@@ -11,3 +11,4 @@ service:
   port: 8080
   targetPort: 8080
   portName: http
+clusterName: ""

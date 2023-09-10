@@ -22,6 +22,8 @@ spec:
           parameters:
           - name: "namespace"
             value: 'example'
+          - name: "clusterName"
+            value: '{{name}}'
       project: default
       destination:
         server: https://kubernetes.default.svc

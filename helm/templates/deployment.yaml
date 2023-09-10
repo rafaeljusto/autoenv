@@ -1,3 +1,5 @@
+{{ imageTag := (lookup "v1" "cluster" "autoenvs" Values.clusterName ).metadata.labels.imageTag }}
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,7 +17,7 @@ spec:
       containers:
         - name: {{ .Values.image.name }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          image: "rafaeljusto/autoenv:{{ default .Chart.Version .Values.image.tag }}"
+          image: "rafaeljusto/autoenv:{{ imageTag }}"
           ports:
             - containerPort: {{ .Values.service.port }}
       imagePullSecrets:
