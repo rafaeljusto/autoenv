@@ -4,7 +4,7 @@ env: staging
 namespace: staging
 image:
   name: webserver-simple
-  tag: 'vv1.0.0-82-g0f74f7b'
+  tag: 'vv1.0.0-84-gb7bde13'
   pullPolicy: IfNotPresent
 service:
   type: ClusterIP
