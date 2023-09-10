@@ -1,3 +1,5 @@
+---
+{{- required "The cluster name is required!" .Values.clusterName }}
 {{- $imageTag := (lookup "cluster.x-k8s.io/v1beta1" "cluster" "autoenvs" .Values.clusterName ).metadata.labels.imageTag }}
 
 apiVersion: apps/v1
