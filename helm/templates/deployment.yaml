@@ -1,4 +1,4 @@
-{{- $imageTag := (lookup "v1" "cluster" "autoenvs" .Values.clusterName ).metadata.labels.imageTag }}
+{{- $imageTag := (lookup "cluster.x-k8s.io/v1beta1" "cluster" "autoenvs" .Values.clusterName ).metadata.labels.imageTag }}
 
 apiVersion: apps/v1
 kind: Deployment
