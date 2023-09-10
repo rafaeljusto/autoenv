@@ -6,6 +6,7 @@ metadata:
   namespace: {{.Values.namespace | required "The cluster namespace is required."}}
   labels:
     name: {{.Values.cluster_name}}
+    imageTag: {{.Values.imageTag}}
 spec:
   controlPlaneRef:
     apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
