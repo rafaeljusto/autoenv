@@ -21,4 +21,12 @@ spec:
           nginx.ingress.kubernetes.io/backend-protocol: HTTPS
           nginx.ingress.kubernetes.io/ssl-passthrough: "true"
           nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      labels:
+        imageTag: {{.Values.imageTag}}
+      podLabels:
+        imageTag: {{.Values.imageTag}}
+      coredns:
+        podLabels:
+          imageTag: {{.Values.imageTag}}
+
   kubernetesVersion: "{{.Values.kubernetes_version}}"
