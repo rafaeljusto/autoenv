@@ -3,6 +3,8 @@ apiVersion: infrastructure.cluster.x-k8s.io/v1alpha1
 kind: VCluster
 metadata:
   name: {{.Values.cluster_name}}
+  labels:
+    imageTag: {{.Values.imageTag}}
 spec:
   controlPlaneEndpoint:
     host: ""
