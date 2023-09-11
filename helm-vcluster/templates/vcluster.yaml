@@ -28,5 +28,6 @@ spec:
       coredns:
         podLabels:
           imageTag: {{.Values.imageTag}}
-
+      globalAnnotations:
+        imageTag: {{.Values.imageTag}}
   kubernetesVersion: "{{.Values.kubernetes_version}}"
